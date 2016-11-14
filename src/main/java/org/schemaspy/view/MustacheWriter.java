@@ -19,6 +19,7 @@ public class MustacheWriter {
     private File outputDir;
     private HashMap<String, Object> scopes;
     private  String rootPath;
+    private  String rootPathtoHome;
     private String databaseName;
     private String templateDirectory = Config.getInstance().getTemplateDirectory();
 
@@ -26,6 +27,12 @@ public class MustacheWriter {
         this.outputDir = outputDir;
         this.scopes = scopes;
         this.rootPath = rootPath;
+        boolean isOneOfMultipleSchemas = Config.getInstance().isOneOfMultipleSchemas();
+        if(isOneOfMultipleSchemas){
+            this.rootPathtoHome = "../"+rootPath;
+        }else{
+            this.rootPathtoHome = rootPath;
+        }
         this.databaseName = databaseName;
     }
 
@@ -48,6 +55,7 @@ public class MustacheWriter {
             mainScope.put("content", result);
             mainScope.put("pageScript",scriptFileName);
             mainScope.put("rootPath", rootPath);
+            mainScope.put("rootPathtoHome", rootPathtoHome);
 
             Mustache mustacheContent = contentMf.compile(getReader(new File(templateDirectory,"container.html").toString()), "container");
             mustacheContent.execute(content, mainScope).flush();
