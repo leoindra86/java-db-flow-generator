@@ -52,7 +52,9 @@ public class MustacheWriter {
             Mustache mustacheContent = contentMf.compile(getReader(new File(templateDirectory,"container.html").toString()), "container");
             mustacheContent.execute(content, mainScope).flush();
 
-            fileUtils.writeStringToFile(new File(outputDir, destination), content.toString(), "UTF-8");
+            File destinationFile = new File(outputDir, destination);
+
+            fileUtils.writeStringToFile(destinationFile, content.toString(), "UTF-8");
         } catch (IOException e) {
             e.printStackTrace();
         }
