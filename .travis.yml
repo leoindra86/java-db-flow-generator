@@ -11,6 +11,7 @@ addons:
   apt:
     packages:
       - oracle-java8-installer
+      - graphviz
 script:
   - if [ $TRAVIS_PULL_REQUEST == "false" ]; then
       mvn clean -e org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN;
