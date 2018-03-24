@@ -173,8 +173,8 @@ public class SchemaAnalyzer {
             //
             // create our representation of the database
             //
-            Database db = new Database(meta, dbName, catalog, schema, schemaMeta);
-            databaseService.gatheringSchemaDetails(config, db, progressListener);
+            Database db = new Database(meta, dbName, catalog, schema);
+            databaseService.gatheringSchemaDetails(config, db, schemaMeta, progressListener);
 
             long duration = progressListener.startedGraphingSummaries();
 
