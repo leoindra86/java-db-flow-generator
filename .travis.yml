@@ -10,7 +10,6 @@ jdk:
 addons:
   apt:
     packages:
-      - oracle-java8-installer
       - graphviz
 script:
   - if [ $TRAVIS_PULL_REQUEST == "false" ]; then
